@@ -1,9 +1,85 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title></title>
-</head>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Галерея">
+    <meta name="keywords" content="Mesto">
+    <meta name="author" content="Ilia Vyugin">
+    <link rel="stylesheet" href="pages/index.css">
+    <title>Mesto</title>
+  </head>
 <body>
-
+  <div class="page">
+    <header class="header">
+      <div class="header__logo"></div>
+    </header>
+    <section class="profile">
+      <div class="popup">
+        <button class="popup__close-btn"></button>
+        <form class="popup__container">
+          <h2 class="popup__container-title">Редактировать профиль</h2>
+          <input class="popup__container-input" type="text" value="Вася Пупкин">
+          <input class="popup__container-input" type="text" value="Пупкинист пупляндии">
+          <button class="popup__container-save-btn">Сохранить</button>
+        </form>
+      </div>
+      <div class="profile__info">
+        <img src="./images/avatar.jpeg" class="profile__avatar" alt="Аватар">
+        <div class="profile__description">
+          <h2 class="profile__title">Вася Пупкин</h2>
+          <button class="profile__edit-btn"></button>
+          <h3 class="profile__subtitle">Пупкинист пупляндии</h3>
+        </div>
+      </div>
+      <button class="profile__add-btn"></button>
+    </section>
+    <section class="places">
+      <div class="place">
+        <img class="place__image" src="./images/eda.jpeg" alt="Город">
+        <div class="place__description">
+          <p class="place__title">Город</p>
+          <button class="place__like-btn"></button>
+        </div>
+      </div>
+      <div class="place">
+        <img class="place__image" src="./images/train.jpeg" alt="Поезд">
+        <div class="place__description">
+          <p class="place__title">Поезд</p>
+          <button class="place__like-btn"></button>
+        </div>
+      </div>
+      <div class="place">
+        <img class="place__image" src="./images/kazan.jpeg" alt="Казанский собор">
+        <div class="place__description">
+          <p class="place__title">Казанский собор</p>
+          <button class="place__like-btn"></button>
+        </div>
+      </div>
+      <div class="place">
+        <img class="place__image" src="./images/sky.jpeg" alt="Небо">
+        <div class="place__description">
+          <p class="place__title">Небо</p>
+          <button class="place__like-btn"></button>
+        </div>
+      </div>
+      <div class="place">
+        <img class="place__image" src="./images/swim.jpeg" alt="Прорубь">
+        <div class="place__description">
+          <p class="place__title">Прорубь</p>
+          <button class="place__like-btn"></button>
+        </div>
+      </div>
+      <div class="place">
+        <img class="place__image" src="./images/volga.jpeg" alt="Волга">
+        <div class="place__description">
+          <p class="place__title">Волга</p>
+          <button class="place__like-btn"></button>
+        </div>
+      </div>
+    </section>
+    <footer class="footer">© 2020 Mesto Russia</footer>
+  </div>
+  <script src="./bloks/popup/popup.js"></script>
 </body>
 </html>

@@ -1,0 +1,14 @@
+.place__like-btn {
+  width: 21px;
+  height: 19px;
+  
+  background-image: url(./../../../images/like-btn.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+
+  align-self: center;
+  cursor: pointer;
+
+  background-color: transparent;
+  border: none;
+}

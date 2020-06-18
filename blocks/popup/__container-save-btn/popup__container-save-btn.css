@@ -1,0 +1,20 @@
+.popup__container-save-btn {
+  display: block;
+  width: 358px;
+  height: 50px;
+  margin: 48px auto 0;
+
+  color: #FFFFFF;
+
+  background-color: #000000;
+  border-radius: 2px;
+  transition: opacity 0.5s ease-out;
+}
+
+.popup__container-save-btn:focus {
+  outline: none;
+}
+
+.popup__container-save-btn:hover {
+  opacity: 0.8;
+}
