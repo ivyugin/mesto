@@ -1,8 +1,9 @@
 .profile__edit-btn {
+  grid-area: btn;
+  justify-self: start;
   width: 24px;
   height: 24px;
 
-  margin-left: 17px;
   align-self: baseline;
 
   border: 1px solid #FFFFFF;
@@ -13,6 +14,7 @@
   background-image: url(./../../../images/edit-btn.svg);
   background-repeat: no-repeat;
   background-position: center;
+  transition: opacity 0.5s ease-out;
 }
 
 @media screen and (max-width: 525px) {
@@ -20,4 +22,12 @@
     width: 18px;
     height: 18px;
   }
+}
+
+.profile__edit-btn:focus {
+  outline: none;
+}
+
+.profile__edit-btn:hover {
+  opacity: 0.6;
 }

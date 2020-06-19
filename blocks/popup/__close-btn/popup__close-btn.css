@@ -13,6 +13,7 @@
   position: absolute;
   left: calc(50vw + 215px);
   bottom: calc(50vh + 165px);
+  transition: opacity 0.5s ease-out;
 }
 
 .popup__close-btn:focus {
@@ -21,4 +22,25 @@
 
 .popup__close-btn:hover {
   opacity: 0.6;
+}
+
+@media screen and (max-width: 600px) {
+  .popup__close-btn {
+    width: 20px;
+    height: 20px;
+    left: calc(50vw + 121px);
+    bottom: calc(50vh + 113px);
+
+    clip-path: 
+    polygon(
+      0% 15%,     /* верхняя левая */
+      15% 0%,     /* верхняя левая */
+      85% 0%,    /* верхняя правая */
+      100% 15%,   /* верхняя правая */
+      100% 85%,  /* нижняя правая */
+      85% 100%,  /* нижняя правая */
+      15% 100%,   /* нижняя левая */
+      0 85%      /* нижняя левая */
+    );
+  }
 }

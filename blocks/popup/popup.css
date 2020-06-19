@@ -3,8 +3,10 @@
 @import url(./__container-title/popup__container-title.css);
 @import url(./__container-input/popup__container-input.css);
 @import url(./__container-save-btn/popup__container-save-btn.css);
+@import url(./popup_opened.css);
 
 .popup {
+  display: none;
   width: 100%;
   height: 100%;
   position: fixed;

@@ -1,17 +1,27 @@
 .profile__description {
-  width: 310px;
-  height: 77px;
+  align-self: center;
   margin-left: 20px;
 
-  display: flex;
-  flex-flow: row wrap;
-  align-self: center;
+  display: grid;
+  grid-template-rows: 43px 18px;
+  grid-template-columns: fit-content(350px) auto;
+  grid-template-areas: "name btn" "job job";
+  grid-column-gap: 17px;
+  grid-row-gap: 16px;
 
   color: #FFFFFF;
 }
 
-@media screen and (max-width: 525px) {
+@media screen and (max-width: 930px) {
   .profile__description {
     justify-content: center;
+    grid-column-gap: 10px;
+    grid-row-gap: 14px;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .profile__description {
+    grid-template-columns: fit-content(70vw) auto;
   }
 }
