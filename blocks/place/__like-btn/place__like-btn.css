@@ -11,4 +11,13 @@
 
   background-color: transparent;
   border: none;
+  transition: opacity 0.5s ease-out;
+}
+
+.place__like-btn:hover {
+  opacity: 0.5;
+}
+
+.place__like-btn:focus {
+  outline: none;
 }

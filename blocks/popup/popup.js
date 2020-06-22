@@ -7,7 +7,7 @@ let editButton = profile.querySelector('.profile__edit-btn');
 //открытие формы
 
 editButton.addEventListener('click', function () { 
-    popup.classList.add('popup_opened') 
+    popup.classList.add('popup_opened');
 
     //disable scroll
     document.body.style.overflow = 'hidden';

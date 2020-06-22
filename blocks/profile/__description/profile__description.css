@@ -4,7 +4,7 @@
 
   display: grid;
   grid-template-rows: 43px 18px;
-  grid-template-columns: fit-content(350px) auto;
+  grid-template-columns: fit-content(350px) 24px;
   grid-template-areas: "name btn" "job job";
   grid-column-gap: 17px;
   grid-row-gap: 16px;
@@ -22,6 +22,6 @@
 
 @media screen and (max-width: 470px) {
   .profile__description {
-    grid-template-columns: fit-content(70vw) auto;
+    grid-template-columns: fit-content(70vw) 24px;
   }
 }

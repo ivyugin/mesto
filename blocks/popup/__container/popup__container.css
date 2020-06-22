@@ -14,9 +14,9 @@
 
 @media screen and (max-width: 600px) {
   .popup__container {
-    width: 282px;
+    width: 242px;
     height: 246px;
-    left: calc(50vw - 141px);
-    top: calc(50vh - 108px);
+    left: calc(50vw - 121px);
+    top: calc(50vh - 123px);
   }
 }

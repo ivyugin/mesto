@@ -1,0 +1,9 @@
+.place__like-btn_cheked {
+  background-image: url(./../../../../images/edit-btn-black.svg);
+  
+  transition: opacity 0.5s ease-out;
+}
+
+.place__like-btn_cheked:hover {
+  opacity: 0.9;
+}
