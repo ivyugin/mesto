@@ -2,8 +2,12 @@
   width: 282px;
   height: 282px;
   object-fit: cover;
+  cursor: pointer;
+  transition: opacity 0.5s ease-out;
 
   border-radius: 10px 10px 0 0;
 }
 
-/* Не ясно - зачем добавлять ховер на карточку т.к. карточка не является ссылкой. */
+.place__image:hover {
+  opacity: 0.5;
+}

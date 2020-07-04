@@ -18,10 +18,10 @@
       <div class="popup">
         <button class="popup__close-btn"></button>
         <form class="popup__container">
-          <p class="popup__container-title">Редактировать профиль</p>
-          <input class="popup__container-input popup__container-input_type_title" type="text" maxlength="30">
-          <input class="popup__container-input popup__container-input_type_subtitle" type="text" maxlength="50">
-          <button class="popup__container-save-btn">Сохранить</button>
+          <p class="popup__container-title"></p>
+          <input class="popup__container-input popup__container-input_type_title" type="text">
+          <input class="popup__container-input popup__container-input_type_subtitle" type="text">
+          <button class="popup__container-save-btn"></button>
         </form>
       </div>
       <div class="profile__info">
@@ -35,52 +35,28 @@
       <button class="profile__add-btn"></button>
     </section>
     <ul class="places">
-      <li class="place">
-        <img class="place__image" src="./images/eda.jpeg" alt="Город">
-        <div class="place__description">
-          <p class="place__title">Город</p>
-          <button class="place__like-btn"></button>
+      <div class="img-popup">
+        <div class="img-popup__container">
+          <button class="img-popup__close-btn"></button>
+          <img class="img-popup__img">
+          <p class="img-popup__title"></p>
         </div>
-      </li>
-      <li class="place">
-        <img class="place__image" src="./images/train.jpeg" alt="Поезд">
-        <div class="place__description">
-          <p class="place__title">Вокзал</p>
-          <button class="place__like-btn"></button>
-        </div>
-      </li>
-      <li class="place">
-        <img class="place__image" src="./images/kazan.jpeg" alt="Казанский собор">
-        <div class="place__description">
-          <p class="place__title">Казанский собор</p>
-          <button class="place__like-btn"></button>
-        </div>
-      </li>
-      <li class="place">
-        <img class="place__image" src="./images/sky.jpeg" alt="Небо">
-        <div class="place__description">
-          <p class="place__title">Небо</p>
-          <button class="place__like-btn"></button>
-        </div>
-      </li>
-      <li class="place">
-        <img class="place__image" src="./images/swim.jpeg" alt="Прорубь">
-        <div class="place__description">
-          <p class="place__title">Прорубь</p>
-          <button class="place__like-btn"></button>
-        </div>
-      </li>
-      <li class="place">
-        <img class="place__image" src="./images/volga.jpeg" alt="Волга">
-        <div class="place__description">
-          <p class="place__title">Волга</p>
-          <button class="place__like-btn"></button>
-        </div>
-      </li>
+      </div>
     </ul>
     <footer class="footer">© 2020 Mesto Russia</footer>
   </div>
+  <template id="placeTemplate">
+    <li class="place">
+        <img class="place__image">
+        <button class="place__delete-btn"></button>
+        <div class="place__description">
+          <p class="place__title"></p>
+          <button class="place__like-btn"></button>
+        </div>
+      </li>
+  </template>
   <script src="./blocks/popup/popup.js"></script>
   <script src="./blocks/places/places.js"></script>
+  <script src="./blocks/img-popup/img-popup.js"></script>
 </body>
 </html>
