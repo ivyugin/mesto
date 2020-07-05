@@ -1,24 +1,28 @@
-let popup = document.querySelector('.popup');
-let closeButton = popup.querySelector('.popup__close-btn');
-let formElement = popup.querySelector('.popup__container');
-let profile = document.querySelector('.profile');
-let editButton = profile.querySelector('.profile__edit-btn');
+const popup = document.querySelector('.popup');
+const closeButton = popup.querySelector('.popup__close-btn');
+const formElement = popup.querySelector('.popup__container');
+const container_title= popup.querySelector('.popup__container-input_type_title');
+const container_subtitle = popup.querySelector('.popup__container-input_type_subtitle');
+
+const profile = document.querySelector('.profile');
+const editButton = profile.querySelector('.profile__edit-btn');
+const esc_key = 27;
 
 // POPUP ADD IMAGE
-let addButton = profile.querySelector('.profile__add-btn');
+const addButton = profile.querySelector('.profile__add-btn');
 
 // OPEN
 //EDIT PROFILE
 editButton.addEventListener('click', function () { 
     //disable scroll
-    document.body.style.overflow = 'hidden';
+    body.classList.add('body_disable-scroll');
 
-    let profileTitle = profile.querySelector('.profile__name').textContent;
-    let profileSubtitle = profile.querySelector('.profile__job').textContent;
+    const profileTitle = profile.querySelector('.profile__name').textContent;
+    const profileSubtitle = profile.querySelector('.profile__job').textContent;
 
     popup.querySelector('.popup__container-title').textContent = 'Редактировать профиль';
-    popup.querySelector('.popup__container-input_type_title').value = profileTitle;
-    popup.querySelector('.popup__container-input_type_subtitle').value = profileSubtitle;
+    container_title.value = profileTitle;
+    container_subtitle.value = profileSubtitle;
     popup.querySelector('.popup__container-save-btn').textContent = 'Сохранить';
 
     popup.classList.add('popup_opened', 'popup_edit');
@@ -29,13 +33,13 @@ addButton.addEventListener('click', function () {
     popup.classList.add('popup_opened', 'popup_add');
 
     //disable scroll
-    document.body.style.overflow = 'hidden';
+    body.classList.add('body_disable-scroll');
 
     popup.querySelector('.popup__container-title').textContent = 'Новое место';
-    popup.querySelector('.popup__container-input_type_title').value = '';
-    popup.querySelector('.popup__container-input_type_title').placeholder = 'Название';
-    popup.querySelector('.popup__container-input_type_subtitle').value = '';
-    popup.querySelector('.popup__container-input_type_subtitle').placeholder = 'Ссылка на картинку';
+    container_title.value = '';
+    container_title.placeholder = 'Название';
+    container_subtitle.value = '';
+    container_subtitle.placeholder = 'Ссылка на картинку';
     popup.querySelector('.popup__container-save-btn').textContent = 'Создать';
   });
 
@@ -46,16 +50,18 @@ closeButton.addEventListener('click', function () {
   popup.classList.remove('popup_opened', 'popup_edit', 'popup_add');
 
   //enable scroll
-  document.body.style.overflow = 'auto';
+  body.classList.remove('body_disable-scroll');
    });
 
 //esc
 document.onkeydown = function(evt) {
   evt = evt || window.event;
-  if (evt.keyCode == 27) {
+  if (evt.keyCode == esc_key) {
+    console.log('esc');
       popup.classList.remove('popup_opened', 'popup_edit', 'popup_add');
+      imgPopup.classList.remove('img-popup_opened');
       //enable scroll
-      document.body.style.overflow = 'auto';
+      body.classList.remove('body_disable-scroll');
   }
 };
 
@@ -64,17 +70,15 @@ formElement.addEventListener('submit', function (evt) {
   evt.preventDefault();
 
   if (formElement.parentElement.classList.contains('popup_edit')) {
-    let nameInput = popup.querySelector('.popup__container-input_type_title').value;
-    let jobInput = popup.querySelector('.popup__container-input_type_subtitle').value;
+    const nameInput = container_title.value;
+    const jobInput = container_subtitle.value;
 
     profile.querySelector('.profile__name').textContent = nameInput;
     profile.querySelector('.profile__job').textContent = jobInput;
   } else {
-    let nameImg = popup.querySelector('.popup__container-input_type_title').value;
-    let linkImg = popup.querySelector('.popup__container-input_type_subtitle').value;
+    const nameImg = container_title.value;
+    const linkImg = container_subtitle.value;
 
-    console.log(nameImg);
-    console.log(linkImg);
     if ((nameImg != '') && (linkImg != '')) {
       addImage(nameImg, linkImg);
     }
@@ -82,7 +86,7 @@ formElement.addEventListener('submit', function (evt) {
 
   popup.classList.remove('popup_opened', 'popup_edit', 'popup_add');
   //enable scroll
-  document.body.style.overflow = 'auto';
+  body.classList.remove('body_disable-scroll');
 });
 
 

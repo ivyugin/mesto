@@ -1,0 +1,5 @@
+@import url(./_disable-scroll/body_disable-scroll.css);
+
+.body {
+  overflow: auto;
+}

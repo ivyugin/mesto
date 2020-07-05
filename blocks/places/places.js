@@ -1,4 +1,6 @@
-let places = document.querySelector('.places');
+const places = document.querySelector('.places');
+const body = document.querySelector('.body');
+
 const initialCards = [
     {
         name: 'Архыз',
@@ -30,20 +32,22 @@ function addImage (name, link) {
 
   const placeTemplate = document.querySelector('#placeTemplate').content.cloneNode(true);
 
-  placeTemplate.querySelector('.place__image').src = link;
-  placeTemplate.querySelector('.place__image').alt = name;
+  const place_image = placeTemplate.querySelector('.place__image'); 
+  place_image.src = link;
+  place_image.alt = name;
   placeTemplate.querySelector('.place__title').textContent = name;
 
   //OPEN IMAGE
-  placeTemplate.querySelector('.place__image').addEventListener('click', (evt) => {
+  place_image.addEventListener('click', () => {
     const imgPopup = document.querySelector('.img-popup');
-    imgPopup.querySelector('.img-popup__img').src = link;
-    imgPopup.querySelector('.img-popup__img').alt = name;
+    const img_popup_img = imgPopup.querySelector('.img-popup__img');
+    img_popup_img.src = link;
+    img_popup_img.alt = name;
     imgPopup.querySelector('.img-popup__title').textContent = name;
 
     imgPopup.classList.add('img-popup_opened');
     //disable scroll
-    document.body.style.overflow = 'hidden';
+    body.classList.add('body_disable-scroll');
   });
 
   //LIKE BUTTON
@@ -57,10 +61,7 @@ function addImage (name, link) {
   });
 
   places.prepend(placeTemplate);
-
-
-
-};
+}
 
 initialCards.forEach( (item) => {
   addImage(item.name, item.link);

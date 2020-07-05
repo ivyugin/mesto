@@ -14,10 +14,7 @@
   background-color: rgba(0, 0, 0, 0.9);
   z-index: 1;
   
+  visibility: hidden;
   opacity: 0;
-  transition: opacity 0.3s linear;
-}
-
-.img-popup:hover {
-  opacity: 1;
+  transition: visibility 0.7s linear, opacity 0.3s linear;
 }
