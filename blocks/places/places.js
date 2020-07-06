@@ -32,17 +32,17 @@ function addImage (name, link) {
 
   const placeTemplate = document.querySelector('#placeTemplate').content.cloneNode(true);
 
-  const place_image = placeTemplate.querySelector('.place__image'); 
-  place_image.src = link;
-  place_image.alt = name;
+  const placeImage = placeTemplate.querySelector('.place__image'); 
+  placeImage.src = link;
+  placeImage.alt = name;
   placeTemplate.querySelector('.place__title').textContent = name;
 
   //OPEN IMAGE
-  place_image.addEventListener('click', () => {
+  placeImage.addEventListener('click', () => {
     const imgPopup = document.querySelector('.img-popup');
-    const img_popup_img = imgPopup.querySelector('.img-popup__img');
-    img_popup_img.src = link;
-    img_popup_img.alt = name;
+    const imgPopupImg = imgPopup.querySelector('.img-popup__img');
+    imgPopupImg.src = link;
+    imgPopupImg.alt = name;
     imgPopup.querySelector('.img-popup__title').textContent = name;
 
     imgPopup.classList.add('img-popup_opened');
