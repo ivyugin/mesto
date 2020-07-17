@@ -7,9 +7,17 @@ const containerSubtitle = popup.querySelector('.popup__container-input_type_subt
 const profile = document.querySelector('.profile');
 const editButton = profile.querySelector('.profile__edit-btn');
 const escKey = 27;
-
-// POPUP ADD IMAGE
 const addButton = profile.querySelector('.profile__add-btn');
+
+const pref = {
+      formSelector: '.popup__container',
+      inputSelector: '.popup__container-input',
+      submitButtonSelector: '.popup__container-save-btn',
+      inactiveButtonClass: 'popup__container-save-btn_inactive',
+      inputErrorClass: 'popup__container-input_error',
+      formErrorSelector: '.popup__error',
+      errorClass: 'popup__error_active'
+    };
 
 // OPEN
 //EDIT PROFILE
@@ -25,13 +33,22 @@ editButton.addEventListener('click', function () {
     containerSubtitle.value = profileSubtitle;
     popup.querySelector('.popup__container-save-btn').textContent = 'Сохранить';
 
+    //validation
+    containerTitle.setAttribute('type', 'text');
+    containerTitle.setAttribute('minlength', '2');
+    containerTitle.setAttribute('maxlength', '40');
+    containerSubtitle.setAttribute('type', 'text');
+    containerSubtitle.setAttribute('minlength', '2');
+    containerSubtitle.setAttribute('maxlength', '200');
+
+    enableValidation(pref);
+    //============
+
     popup.classList.add('popup_opened', 'popup_edit');
   });
 
 //ADD IMAGE
 addButton.addEventListener('click', function () { 
-    popup.classList.add('popup_opened', 'popup_add');
-
     //disable scroll
     body.classList.add('body_disable-scroll');
 
@@ -41,11 +58,30 @@ addButton.addEventListener('click', function () {
     containerSubtitle.value = '';
     containerSubtitle.placeholder = 'Ссылка на картинку';
     popup.querySelector('.popup__container-save-btn').textContent = 'Создать';
+
+    //validation
+    containerTitle.setAttribute('type', 'text');
+    containerTitle.setAttribute('minlength', '1');
+    containerTitle.setAttribute('maxlength', '30');
+    containerSubtitle.setAttribute('type', 'url');
+
+    enableValidation(pref);
+    //============
+
+    popup.classList.add('popup_opened', 'popup_add');
   });
 
-//Закрытие формы:
+//Close form
+//missclick
+popup.addEventListener('click', function (e) {
+  if (e.target.classList.contains('popup')) {
+    popup.classList.remove('popup_opened', 'popup_edit', 'popup_add');
+    //enable scroll
+    body.classList.remove('body_disable-scroll');
+  }
+})
 
-//кнопкой
+//Close button
 closeButton.addEventListener('click', function () { 
   popup.classList.remove('popup_opened', 'popup_edit', 'popup_add');
 
@@ -64,7 +100,7 @@ document.onkeydown = function(evt) {
   }
 };
 
-//Сабмит
+//Submit
 formElement.addEventListener('submit', function (evt) {
   evt.preventDefault();
 
@@ -87,5 +123,3 @@ formElement.addEventListener('submit', function (evt) {
   //enable scroll
   body.classList.remove('body_disable-scroll');
 });
-
-

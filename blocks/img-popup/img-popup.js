@@ -9,3 +9,13 @@ closeImgButton.addEventListener('click', function () {
   //enable scroll
   body.classList.remove('body_disable-scroll');
    });
+
+//missclick
+imgPopup.addEventListener('click', function (e) {
+  if (e.target.classList.contains('img-popup')) {
+    imgPopup.classList.remove('img-popup_opened');
+
+    //enable scroll
+    body.classList.remove('body_disable-scroll');
+  }
+})

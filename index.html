@@ -17,10 +17,16 @@
     <section class="profile">
       <div class="popup">
         <button class="popup__close-btn"></button>
-        <form class="popup__container">
+        <form class="popup__container" novalidate>
           <p class="popup__container-title"></p>
-          <input class="popup__container-input popup__container-input_type_title" type="text">
-          <input class="popup__container-input popup__container-input_type_subtitle" type="text">
+          <div class="popup__control">
+            <input class="popup__container-input popup__container-input_type_title" required>
+            <span class="popup__error"></span>
+          </div>
+          <div class="popup__control">
+            <input class="popup__container-input popup__container-input_type_subtitle" required>
+            <span class="popup__error"></span>
+          </div>
           <button class="popup__container-save-btn"></button>
         </form>
       </div>
@@ -55,6 +61,7 @@
         </div>
       </li>
   </template>
+  <script src="./scripts/validation.js"></script>
   <script src="./blocks/popup/popup.js"></script>
   <script src="./blocks/places/places.js"></script>
   <script src="./blocks/img-popup/img-popup.js"></script>

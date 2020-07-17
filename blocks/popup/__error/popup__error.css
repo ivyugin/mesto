@@ -1,0 +1,15 @@
+@import url(./_active/popup__error_active.css);
+
+.popup__error {
+  font-size: 12px;
+  line-height: 15px;
+  color: #FF0000;
+  opacity: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .popup__error {
+    font-size: 8px;
+    line-height: 4px;
+  }
+}
