@@ -58,6 +58,18 @@ function enableValidation (pref) {
   setEventListeners(pref, form);
 }
 
+const pref = {
+      formSelector: '.popup__container',
+      inputSelector: '.popup__container-input',
+      submitButtonSelector: '.popup__container-save-btn',
+      inactiveButtonClass: 'popup__container-save-btn_inactive',
+      inputErrorClass: 'popup__container-input_error',
+      formErrorSelector: '.popup__error',
+      errorClass: 'popup__error_active'
+    };
+
+enableValidation(pref);
+
 
 
     

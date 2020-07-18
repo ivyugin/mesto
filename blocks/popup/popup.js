@@ -3,55 +3,63 @@ const closeButton = popup.querySelector('.popup__close-btn');
 const formElement = popup.querySelector('.popup__container');
 const containerTitle= popup.querySelector('.popup__container-input_type_title');
 const containerSubtitle = popup.querySelector('.popup__container-input_type_subtitle');
+const saveBtn = popup.querySelector('.popup__container-save-btn');
 
 const profile = document.querySelector('.profile');
 const editButton = profile.querySelector('.profile__edit-btn');
 const escKey = 27;
 const addButton = profile.querySelector('.profile__add-btn');
 
-const pref = {
-      formSelector: '.popup__container',
-      inputSelector: '.popup__container-input',
-      submitButtonSelector: '.popup__container-save-btn',
-      inactiveButtonClass: 'popup__container-save-btn_inactive',
-      inputErrorClass: 'popup__container-input_error',
-      formErrorSelector: '.popup__error',
-      errorClass: 'popup__error_active'
-    };
+function setManyAttributes (obj, attrArr) {
+  //Object.entries(attrArr).forEach((Attribut) => {
+  //  obj.setAttribute(Attribut[0], Attribut[1]);
+  //})
+  for (let Attribut in attrArr) {
+    obj.setAttribute(Attribut, attrArr[Attribut]);
+  }
+}
+
 
 // OPEN
 //EDIT PROFILE
 editButton.addEventListener('click', function () { 
+
     //disable scroll
     body.classList.add('body_disable-scroll');
 
+    //customization popup
     const profileTitle = profile.querySelector('.profile__name').textContent;
     const profileSubtitle = profile.querySelector('.profile__job').textContent;
-
     popup.querySelector('.popup__container-title').textContent = 'Редактировать профиль';
     containerTitle.value = profileTitle;
     containerSubtitle.value = profileSubtitle;
-    popup.querySelector('.popup__container-save-btn').textContent = 'Сохранить';
+    saveBtn.textContent = 'Сохранить';
 
-    //validation
-    containerTitle.setAttribute('type', 'text');
-    containerTitle.setAttribute('minlength', '2');
-    containerTitle.setAttribute('maxlength', '40');
-    containerSubtitle.setAttribute('type', 'text');
-    containerSubtitle.setAttribute('minlength', '2');
-    containerSubtitle.setAttribute('maxlength', '200');
+    //prepare popup window: no errors, active button
+    Array.from(popup.querySelectorAll('.popup__container-input')).forEach((item) => {
+      item.classList.remove('popup__container-input_error');
+    });
+    Array.from(popup.querySelectorAll('.popup__error')).forEach((item) => {
+      item.classList.remove('popup__error_active');
+    });
+    saveBtn.classList.remove('popup__container-save-btn_inactive');
+    saveBtn.disabled = false;
 
-    enableValidation(pref);
-    //============
+    //validation attribute
+    setManyAttributes(containerTitle, {type: 'text', minlength: '2', maxlength: '40'});
+    setManyAttributes(containerSubtitle, {type: 'text', minlength: '2', maxlength: '200'});
 
+    //open
     popup.classList.add('popup_opened', 'popup_edit');
   });
 
 //ADD IMAGE
 addButton.addEventListener('click', function () { 
+
     //disable scroll
     body.classList.add('body_disable-scroll');
 
+    //customization popup
     popup.querySelector('.popup__container-title').textContent = 'Новое место';
     containerTitle.value = '';
     containerTitle.placeholder = 'Название';
@@ -59,15 +67,23 @@ addButton.addEventListener('click', function () {
     containerSubtitle.placeholder = 'Ссылка на картинку';
     popup.querySelector('.popup__container-save-btn').textContent = 'Создать';
 
-    //validation
-    containerTitle.setAttribute('type', 'text');
-    containerTitle.setAttribute('minlength', '1');
-    containerTitle.setAttribute('maxlength', '30');
-    containerSubtitle.setAttribute('type', 'url');
+    //prepare popup window: no errors, disable button
+    Array.from(popup.querySelectorAll('.popup__container-input')).forEach((item) => {
+      item.classList.remove('popup__container-input_error');
+    });
+    Array.from(popup.querySelectorAll('.popup__error')).forEach((item) => {
+      item.classList.remove('popup__error_active');
+    });
+    saveBtn.classList.add('popup__container-save-btn_inactive');
+    saveBtn.disabled = true;
 
-    enableValidation(pref);
-    //============
+    //validation attribute
+    setManyAttributes(containerTitle, {type: 'text', minlength: '1', maxlength: '30'});
+    containerSubtitle.removeAttribute('minlength');
+    containerSubtitle.removeAttribute('maxlength');
+    setManyAttributes(containerSubtitle, {type: 'url'});
 
+    //open
     popup.classList.add('popup_opened', 'popup_add');
   });
 
@@ -76,7 +92,6 @@ addButton.addEventListener('click', function () {
 popup.addEventListener('click', function (e) {
   if (e.target.classList.contains('popup')) {
     popup.classList.remove('popup_opened', 'popup_edit', 'popup_add');
-    //enable scroll
     body.classList.remove('body_disable-scroll');
   }
 })
@@ -84,8 +99,6 @@ popup.addEventListener('click', function (e) {
 //Close button
 closeButton.addEventListener('click', function () { 
   popup.classList.remove('popup_opened', 'popup_edit', 'popup_add');
-
-  //enable scroll
   body.classList.remove('body_disable-scroll');
    });
 
@@ -95,7 +108,6 @@ document.onkeydown = function(evt) {
   if (evt.keyCode == escKey) {
     popup.classList.remove('popup_opened', 'popup_edit', 'popup_add');
     imgPopup.classList.remove('img-popup_opened');
-    //enable scroll
     body.classList.remove('body_disable-scroll');
   }
 };
