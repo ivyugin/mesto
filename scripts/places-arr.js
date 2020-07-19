@@ -24,9 +24,3 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
-
-const test = [
-    {
-      name: 'Архыз',
-      link: '/Users/ivyugin/Desktop/Плёнка/49970010.JPG'
-    }];

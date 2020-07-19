@@ -46,11 +46,9 @@ function addImage (name, link) {
   places.prepend(imgCard);
 }
 
-test.forEach( (item) => {
+initialCards.forEach( (item) => {
   addImage(item.name, item.link);
 });
-
-
 
 
 
