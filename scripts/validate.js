@@ -51,11 +51,14 @@ function setEventListeners (pref, form) {
 }
 
 function enableValidation (pref) {
-  const form = popup.querySelector(pref.formSelector);
-  form.addEventListener('submit', function (evt) {
-    evt.preventDefault();
-  });
-  setEventListeners(pref, form);
+  const formArr = document.querySelectorAll(pref.formSelector);
+
+  formArr.forEach((form) => {
+    form.addEventListener('submit', function (evt) {
+      evt.preventDefault();
+    });
+    setEventListeners(pref, form);
+  })
 }
 
 const pref = {

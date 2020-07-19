@@ -15,19 +15,34 @@
       <div class="header__logo"></div>
     </header>
     <section class="profile">
-      <div class="popup">
+      <div class="popup popup_edit">
         <button class="popup__close-btn"></button>
         <form class="popup__container" novalidate>
-          <p class="popup__container-title"></p>
+          <p class="popup__container-title">Редактировать профиль</p>
           <div class="popup__control">
-            <input class="popup__container-input popup__container-input_type_title" required>
+            <input class="popup__container-input popup__container-input_type_title" required type="text" minlength="2" maxlength="20">
             <span class="popup__error"></span>
           </div>
           <div class="popup__control">
-            <input class="popup__container-input popup__container-input_type_subtitle" required>
+            <input class="popup__container-input popup__container-input_type_subtitle" required type="text" minlength="2" maxlength="40">
             <span class="popup__error"></span>
           </div>
-          <button class="popup__container-save-btn"></button>
+          <button class="popup__container-save-btn">Сохранить</button>
+        </form>
+      </div>
+      <div class="popup popup_add qqq">
+        <button class="popup__close-btn"></button>
+        <form class="popup__container" novalidate>
+          <p class="popup__container-title">Новое место</p>
+          <div class="popup__control">
+            <input class="popup__container-input popup__container-input_type_title" placeholder="Название" required type="text" minlength="1" maxlength="30">
+            <span class="popup__error"></span>
+          </div>
+          <div class="popup__control">
+            <input class="popup__container-input popup__container-input_type_subtitle" placeholder="Ссылка на картинку" required type="url">
+            <span class="popup__error"></span>
+          </div>
+          <button class="popup__container-save-btn">Создать</button>
         </form>
       </div>
       <div class="profile__info">
@@ -61,9 +76,12 @@
         </div>
       </li>
   </template>
-  <script src="./blocks/popup/popup.js"></script>
-  <script src="./scripts/validation.js"></script>
-  <script src="./blocks/places/places.js"></script>
-  <script src="./blocks/img-popup/img-popup.js"></script>
+  <script src="./scripts/places-arr.js"></script>
+  <script src="./scripts/popup-add.js"></script>
+  <script src="./scripts/popup-edit.js"></script>
+  <script src="./scripts/popup-img.js"></script>
+  <script src="./scripts/index.js"></script>
+  <script src="./scripts/validate.js"></script>
+  <script src="./scripts/places.js"></script>
 </body>
 </html>
