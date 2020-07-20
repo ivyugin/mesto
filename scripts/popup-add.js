@@ -16,7 +16,7 @@ addPopup.missClickClose = function (evt) {
         addPopup.closePopup();
       }
   };
-addPopup.onBtnClose = function (evt) {
+addPopup.onBtnClose = function () {
     addPopup.closePopup();
   };
 
@@ -27,14 +27,14 @@ addPopup.onEscClose = function (evt) {
   };
 addPopup.addPopupCloseEvent = function () {
     //esc
-    document.onkeydown = addPopup.onEscClose;
+    document.addEventListener('keydown', addPopup.onEscClose);
     //missclick
     addPopup.addPopup.addEventListener('click', addPopup.missClickClose);
     //Close button
     addPopup.addPopup.querySelector('.popup__close-btn').addEventListener('click', addPopup.onBtnClose);
   };
 addPopup.removePopupCloseEvent = function () {
-    document.onkeydown = () => document.onkeydown = null;
+    document.removeEventListener('keydown', addPopup.onEscClose);
     addPopup.addPopup.removeEventListener('click', addPopup.missClickClose);
     addPopup.addPopup.removeEventListener('click', addPopup.onBtnClose);
   };

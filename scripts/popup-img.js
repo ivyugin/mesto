@@ -23,14 +23,14 @@ imagePopup.onEscClose = function (evt) {
   };
 imagePopup.addPopupCloseEvent = function () {
     //esc
-    document.onkeydown = imagePopup.onEscClose;
+    document.addEventListener('keydown', imagePopup.onEscClose);
     //missclick
     imagePopup.imgPopup.addEventListener('click', imagePopup.missClickClose);
     //Close button
     imagePopup.imgPopup.querySelector('.img-popup__close-btn').addEventListener('click', imagePopup.onBtnClose);
   };
 imagePopup.removePopupCloseEvent = function () {
-    document.onkeydown = () => document.onkeydown = null;
+    document.removeEventListener('keydown', imagePopup.onEscClose);
     imagePopup.imgPopup.removeEventListener('click', imagePopup.missClickClose);
     imagePopup.imgPopup.removeEventListener('click', imagePopup.onBtnClose);
   };

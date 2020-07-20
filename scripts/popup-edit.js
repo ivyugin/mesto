@@ -21,7 +21,7 @@ editPopup.missClickClose = function (evt) {
         editPopup.closePopup();
       }
   };
-editPopup.onBtnClose = function (evt) {
+editPopup.onBtnClose = function () {
     editPopup.closePopup();
   };
 
@@ -32,14 +32,14 @@ editPopup.onEscClose = function (evt) {
   };
 editPopup.addPopupCloseEvent = function () {
     //esc
-    document.onkeydown = editPopup.onEscClose;
+    document.addEventListener('keydown', editPopup.onEscClose);
     //missclick
     editPopup.editPopup.addEventListener('click', editPopup.missClickClose);
     //Close button
     editPopup.editPopup.querySelector('.popup__close-btn').addEventListener('click', editPopup.onBtnClose);
   };
 editPopup.removePopupCloseEvent = function () {
-    document.onkeydown = () => document.onkeydown = null;
+    document.removeEventListener('keydown', editPopup.onEscClose);
     editPopup.editPopup.removeEventListener('click', editPopup.missClickClose);
     editPopup.editPopup.removeEventListener('click', editPopup.onBtnClose);
   };
