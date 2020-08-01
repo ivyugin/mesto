@@ -1,58 +1,51 @@
-const editButton = profile.querySelector('.profile__edit-btn');
-const addButton = profile.querySelector('.profile__add-btn');
+import {initialCards} from './places-arr.js';
+import Card from './Card.js';
+import {EditPopup, AddPopup} from './Popup.js';
+import FormValidator from './FormValidator.js'
 
-// OPEN
+const profile = document.querySelector('.profile');
+const places = document.querySelector('.places');
+
+initialCards.forEach( (item) => {
+  const card = new Card(item.name, item.link, '#placeTemplate');
+  const cardElement = card.createImgCard();
+  places.prepend(cardElement);
+});
 
 //EDIT PROFILE
-editButton.addEventListener('click', function () { 
+const editPopup = new EditPopup({
+    popupClass: 'popup_edit',
+    popupSelector: '.popup_edit', 
+    closeBtnSelector: '.popup__close-btn'
+});
+const editButton = profile.querySelector('.profile__edit-btn');
 
-    editPopup.addPopupCloseEvent();
-
-    //disable scroll
-    body.classList.add('body_disable-scroll');
-
-    //customization popup
-    editPopup.containerTitle.value = profileName.textContent;
-    editPopup.containerSubtitle.value = profileJob.textContent;
-
-    //prepare popup window: no errors, active button
-    Array.from(editPopup.editPopup.querySelectorAll('.popup__container-input')).forEach((item) => {
-      item.classList.remove('popup__container-input_error');
-    });
-    Array.from(editPopup.editPopup.querySelectorAll('.popup__error')).forEach((item) => {
-      item.classList.remove('popup__error_active');
-    });
-    editPopup.saveBtn.classList.remove('popup__container-save-btn_inactive');
-    editPopup.saveBtn.disabled = false;
-
-    //open
-    editPopup.editPopup.classList.add('popup_opened');
-    editPopup.submit();
-  });
+editButton.addEventListener('click', () => editPopup.openPopup());
 
 //ADD IMAGE
-addButton.addEventListener('click', function () { 
-    //disable scroll
-    body.classList.add('body_disable-scroll');
+const addPopup = new AddPopup({
+    popupClass: 'popup_add',
+    popupSelector: '.popup_add', 
+    closeBtnSelector: '.popup__close-btn'
+});
+const addButton = profile.querySelector('.profile__add-btn');
 
-    addPopup.addPopupCloseEvent();
+addButton.addEventListener('click', () => addPopup.openPopup());
 
-    //customization popup
-    addPopup.containerTitle.value = '';
-    addPopup.containerSubtitle.value = '';
+//ENABLE VALIDATION
+const pref = {
+      formSelector: '.popup__container',
+      inputSelector: '.popup__container-input',
+      submitButtonSelector: '.popup__container-save-btn',
+      inactiveButtonClass: 'popup__container-save-btn_inactive',
+      inputErrorClass: 'popup__container-input_error',
+      formErrorSelector: '.popup__error',
+      errorClass: 'popup__error_active'
+    };
+    
+const formArr = document.querySelectorAll(pref.formSelector);
 
-    //prepare popup window: no errors, disable button
-    Array.from(addPopup.addPopup.querySelectorAll('.popup__container-input')).forEach((item) => {
-      item.classList.remove('popup__container-input_error');
-    });
-    Array.from(addPopup.addPopup.querySelectorAll('.popup__error')).forEach((item) => {
-      item.classList.remove('popup__error_active');
-    });
-    addPopup.saveBtn.classList.add('popup__container-save-btn_inactive');
-    addPopup.saveBtn.disabled = true;
-
-    //open
-    addPopup.addPopup.classList.add('popup_opened');
-
-    addPopup.submit();
-  });
+formArr.forEach((form) => {
+  const formValidator = new FormValidator(pref, form);
+  formValidator.enableValidation();
+});
