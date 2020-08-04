@@ -1,6 +1,7 @@
 import {initialCards} from './places-arr.js';
 import Card from './Card.js';
-import {EditPopup, AddPopup} from './Popup.js';
+import EditPopup from './EditPopup.js';
+import AddPopup from './AddPopup.js';
 import FormValidator from './FormValidator.js'
 
 const profile = document.querySelector('.profile');
