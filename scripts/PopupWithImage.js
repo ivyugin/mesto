@@ -1,6 +1,6 @@
 import Popup from './Popup.js';
 
-export default class ImagePopup extends Popup {
+export default class PopupWithImage extends Popup {
     constructor (popupElements) {
       super(popupElements);
   
@@ -10,13 +10,13 @@ export default class ImagePopup extends Popup {
       this._title = this._popup.querySelector('.img-popup__title');
     }
   
-    _closePopup() {
+    close() {
       this._popup.classList.remove('img-popup_opened');
-      super._closePopup();
+      super.close();
     };
   
-    openPopup() {
-      super.openPopup();
+    open() {
+      super.open();
   
       this._img.src = this._link;
       this._img.alt = this._name;
@@ -24,4 +24,4 @@ export default class ImagePopup extends Popup {
   
       this._popup.classList.add('img-popup_opened');
     };
-  } //class: ImagePopup
+  } 

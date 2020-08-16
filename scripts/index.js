@@ -1,37 +1,75 @@
 import {initialCards} from './places-arr.js';
 import Card from './Card.js';
-import EditPopup from './EditPopup.js';
-import AddPopup from './AddPopup.js';
-import FormValidator from './FormValidator.js'
+import PopupWithForm from './PopupWithForm.js';
+import FormValidator from './FormValidator.js';
+import Section from './Section.js';
+import UserInfo from './UserInfo.js';
 
 const profile = document.querySelector('.profile');
-const places = document.querySelector('.places');
+const placesSelector = '.places';
 
-initialCards.forEach( (item) => {
-  const card = new Card(item.name, item.link, '#placeTemplate');
-  const cardElement = card.createImgCard();
-  places.prepend(cardElement);
-});
+//ADD START PAK IMAGE
+const imgList = new Section ({
+    items: initialCards,
+    renderer: (item) => {
+      const card = new Card(item.name, item.link, '#placeTemplate');
+      const cardElement = card.createImgCard();
+      imgList.addItem(cardElement);
+    }
+  },
+  placesSelector
+);
+
+imgList.rendererItems();
 
 //EDIT PROFILE
-const editPopup = new EditPopup({
+const userInfo = new UserInfo ('.profile__name', '.profile__job');
+console.log(userInfo);
+
+const editPopup = new PopupWithForm({
+  popupElements: {
     popupClass: 'popup_edit',
     popupSelector: '.popup_edit', 
     closeBtnSelector: '.popup__close-btn'
-});
+  },
+  submit: (title, subtitle) => {
+    const userInfo = new UserInfo ('.profile__name', '.profile__job');
+    userInfo.setUserInfo(title, subtitle);
+  }});
+
 const editButton = profile.querySelector('.profile__edit-btn');
 
-editButton.addEventListener('click', () => editPopup.openPopup());
+editButton.addEventListener('click', () => editPopup.open());
 
 //ADD IMAGE
-const addPopup = new AddPopup({
+const addPopup = new PopupWithForm({
+  popupElements: {
     popupClass: 'popup_add',
     popupSelector: '.popup_add', 
     closeBtnSelector: '.popup__close-btn'
-});
+  },
+  submit: (title, subtitle) => {
+    const placesSelector = '.places';
+        
+        const imgCard = new Section ({
+            items: [{
+              name: title,
+              link: subtitle
+            }],
+            renderer: (item) => {
+              const card = new Card(item.name, item.link, '#placeTemplate');
+              const cardElement = card.createImgCard();
+              imgCard.addItem(cardElement);
+            }
+          },
+          placesSelector
+        );
+        console.log(imgCard);
+        imgCard.rendererItems();
+  }});
 const addButton = profile.querySelector('.profile__add-btn');
 
-addButton.addEventListener('click', () => addPopup.openPopup());
+addButton.addEventListener('click', () => addPopup.open());
 
 //ENABLE VALIDATION
 const pref = {

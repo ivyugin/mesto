@@ -6,52 +6,55 @@ export default class Popup{
     this._popupSelector = popupElements.popupSelector;
     this._closeBtnSelector = popupElements.closeBtnSelector;
     this._popup = document.querySelector(this._popupSelector);
+    this.setEventListeners();
   }
 
-  _closePopup() {
+  close() {
     body.classList.remove('body_disable-scroll');
     this._removePopupCloseEvent();
   };
 
   _missClickClose(evt) {
     if (evt.target.classList.contains(this._popupClass)) {
-        this._closePopup();
+        this.close();
       }
     };
   _onBtnClose() {
-    this._closePopup();
+    this.close();
   };
 
-  _onEscClose(evt) {
+  _handleEscClose(evt) {
       if (evt.key == 'Escape') {
-        this._closePopup();
+        this.close();
       }
   };
-  _addPopupCloseEvent() {
+  setEventListeners() {
     //esc
-    this.escHandler = this._onEscClose.bind(this);
+    this.escHandler = this._handleEscClose.bind(this);
     document.addEventListener('keydown', this.escHandler);
     //missclick
     this._popup.addEventListener('click', (evt) => {
       this._missClickClose(evt);
     });
-    //Close button img-popup__close-btn
+    //Close button
     this._popup.querySelector(this._closeBtnSelector)
     .addEventListener('click', () => {
       this._onBtnClose();
     });
-  };
+    //submit
+  }
+
 
   _removePopupCloseEvent() {
     document.removeEventListener('keydown', this.escHandler);
     this._popup.removeEventListener('click', this._missClickClose);
     this._popup.removeEventListener('click', this._onBtnClose);
+
   };
 
-  openPopup() {
+  open() {
     //disable scroll
     body.classList.add('body_disable-scroll');
-    this._addPopupCloseEvent();
   }
 
 }

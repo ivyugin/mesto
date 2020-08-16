@@ -1,4 +1,4 @@
-import ImagePopup from './ImagePopup.js';
+import PopupWithImage from './PopupWithImage.js';
 
 export default class Card {
   constructor (name, link, template) {
@@ -26,7 +26,7 @@ export default class Card {
   _eventListenerOpen() {
     this._placeImage.addEventListener('click', () => {
 
-      const imgPopup = new ImagePopup({
+      const imgPopup = new PopupWithImage({
           popupClass: 'img-popup',
           popupSelector: '.img-popup', 
           closeBtnSelector: '.img-popup__close-btn',
@@ -34,7 +34,7 @@ export default class Card {
           name: this._name
       });
 
-      imgPopup.openPopup();
+      imgPopup.open();
       
     });
   }
