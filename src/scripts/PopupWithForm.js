@@ -50,6 +50,7 @@ export default class PopupWithForm extends Popup{
   
     open() {
       super.open();
+      super.setEventListeners();
 
       if (this._popupClass == 'popup_edit') {
 
