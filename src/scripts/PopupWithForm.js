@@ -1,10 +1,6 @@
 import Popup from './Popup.js';
 import UserInfo from './UserInfo.js';
 
-//const profile = document.querySelector('.profile');
-//const profileName = profile.querySelector('.profile__name');
-//const profileJob = profile.querySelector('.profile__job');
-
 export default class PopupWithForm extends Popup{
     constructor({popupElements, submit}) {
       super(popupElements);
