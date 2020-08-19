@@ -1,7 +1,7 @@
 export const initialCards = [
     {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+        name: 'Jordan',
+        link: 'https://www.futbolsapiens.com/wp-content/uploads/2016/02/michael.jpg'
     },
     {
         name: 'Челябинская область',

@@ -16,12 +16,8 @@ export default class PopupWithImage extends Popup {
     };
   
     open() {
+      super.setEventListeners();
       super.open();
-  
-      this._img.src = this._link;
-      this._img.alt = this._name;
-      this._title.textContent = this._name;
-  
       this._popup.classList.add('img-popup_opened');
     };
   } 

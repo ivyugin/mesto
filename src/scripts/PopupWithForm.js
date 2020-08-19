@@ -1,35 +1,37 @@
 import Popup from './Popup.js';
-import UserInfo from './UserInfo.js';
 
 export default class PopupWithForm extends Popup{
-    constructor({popupElements, submit}) {
+    constructor({popupElements, openPopup, submit}) {
       super(popupElements);
-      
+      this.openPopup = openPopup;
       this._submit = submit;
-
-      this._userInfo = new UserInfo ('.profile__name', '.profile__job');
-
-      this._title = this._popup.querySelector('.popup__container-input_type_title');
-      this._subtitle = this._popup.querySelector('.popup__container-input_type_subtitle');
       this._saveBtn = this._popup.querySelector('.popup__container-save-btn');
     }
 
     _getInputValues() {
-      return {title: this._popup.querySelector('.popup__container-input_type_title'), subtitle: this._popup.querySelector('.popup__container-input_type_subtitle')}
+      const inputArray = this._popup.querySelectorAll('.popup__container-input');
+      const inputValues = {};
+      inputArray.forEach((input) => {
+        inputValues[input.name] = input.value;
+      });
+      return inputValues
+    }
+
+    setInputValues(userData) {
+      this._popup.querySelector('.popup__container-input_type_title').value = userData.title;
+      this._popup.querySelector('.popup__container-input_type_subtitle').value = userData.subtitle;
     }
 
     setEventListeners() {
-      super.setEventListeners();
+      //super.setEventListeners();
 
       //submit
       const formElement = this._popup.querySelector('.popup__container');
 
+      this.submitHandler =
       formElement.addEventListener('submit', (evt) => {
-  
         evt.preventDefault();
-        
-        this._submit(this._title.value, this._subtitle.value);
-        
+        this._submit(this._getInputValues());
         this.close();
       });
     }
@@ -51,21 +53,7 @@ export default class PopupWithForm extends Popup{
     open() {
       super.open();
       super.setEventListeners();
-
-      if (this._popupClass == 'popup_edit') {
-
-        const userInfo = this._userInfo.getUserInfo();
-        this._title.value = userInfo.title;
-        this._subtitle.value = userInfo.subtitle;
-    
-        this._saveBtn.classList.remove('popup__container-save-btn_inactive');
-        this._saveBtn.disabled = false;
-      } else {
-        this._title.value = '';
-        this._subtitle.value = '';
-        this._saveBtn.classList.add('popup__container-save-btn_inactive');
-        this._saveBtn.disabled = true;
-      }
+      this.openPopup();
   
       //open
       this._popup.classList.add('popup_opened');

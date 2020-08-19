@@ -1,12 +1,14 @@
-import PopupWithImage from './PopupWithImage.js';
-
 export default class Card {
-  constructor (name, link, template) {
+  constructor ({name, link, openPopup, template}) {
     this._name = name;
     this._link = link;
-    this._template = template;
-    this._placeTemplate = document.querySelector(this._template).content.cloneNode(true);
+    this._openPopup = openPopup;
+    this._placeTemplate = this._getTemplate(template);
     this._placeImage = this._placeTemplate.querySelector('.place__image'); 
+  }
+
+  _getTemplate(template) {
+    return document.querySelector(template).content.cloneNode(true);
   }
 
   createImgCard() {
@@ -26,16 +28,7 @@ export default class Card {
   _eventListenerOpen() {
     this._placeImage.addEventListener('click', () => {
 
-      const imgPopup = new PopupWithImage({
-          popupClass: 'img-popup',
-          popupSelector: '.img-popup', 
-          closeBtnSelector: '.img-popup__close-btn',
-          link: this._link,
-          name: this._name
-      });
-
-      imgPopup.open();
-      
+      this._openPopup(this._link, this._name);
     });
   }
 

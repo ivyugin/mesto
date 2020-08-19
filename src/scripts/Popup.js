@@ -33,9 +33,8 @@ export default class Popup{
     this.escHandler = this._handleEscClose.bind(this);
     document.addEventListener('keydown', this.escHandler);
     //missclick
-    this._popup.addEventListener('click', (evt) => {
-      this._missClickClose(evt);
-    });
+    this.missClcHandler = this._missClickClose.bind(this);
+    this._popup.addEventListener('click', this.missClcHandler);
     //Close button
     this._popup.querySelector(this._closeBtnSelector)
     .addEventListener('click', () => {
@@ -47,7 +46,7 @@ export default class Popup{
 
   _removePopupCloseEvent() {
     document.removeEventListener('keydown', this.escHandler);
-    this._popup.removeEventListener('click', this._missClickClose);
+    this._popup.removeEventListener('click', this.missClcHandler);
     this._popup.removeEventListener('click', this._onBtnClose);
 
   };
@@ -55,6 +54,8 @@ export default class Popup{
   open() {
     //disable scroll
     body.classList.add('body_disable-scroll');
+
+    //this.setEventListeners();
   }
 
 }
