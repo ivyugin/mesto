@@ -32,7 +32,7 @@ export default class PopupWithForm extends Popup{
       formElement.addEventListener('submit', (evt) => {
         evt.preventDefault();
         this._submit(this._getInputValues());
-        this.close();
+        
       });
     }
   
@@ -58,4 +58,4 @@ export default class PopupWithForm extends Popup{
       //open
       this._popup.classList.add('popup_opened');
     };
-  } //class: EditPopup
+  }

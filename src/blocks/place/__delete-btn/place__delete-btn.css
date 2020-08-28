@@ -2,6 +2,8 @@
   width: 18px;
   height: 19px;
 
+  visibility: hidden;
+
   position: absolute;
   top: 18px;
   right: 15px;

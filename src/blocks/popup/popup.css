@@ -6,6 +6,10 @@
 @import url(./_opened/popup_opened.css);
 @import url(./__error/popup__error.css);
 @import url(./__control/popup__control.css);
+@import url(./__container/_submit/popup__container_submit.css);
+@import url(./__container-title/_submit/popup__container-title_submit.css);
+@import url(./__container/_avatar/popup__container_avatar.css);
+
 
 .popup {
   display: none;

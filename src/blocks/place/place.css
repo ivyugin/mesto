@@ -4,6 +4,9 @@
 @import url(./__title/place__title.css);
 @import url(./__like-btn/_cheked/place__like-btn_cheked.css);
 @import url(./__delete-btn/place__delete-btn.css);
+@import url(./__delete-btn/_active/place__delete-btn_active.css);
+@import url(./__like-count/place__like-count.css);
+@import url(./__like/place__like.css);
 
 .place {
   width: 282px;
