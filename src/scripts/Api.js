@@ -14,9 +14,6 @@ export default class Api {
             .then((result) => {
                 return result;
         })
-        .catch((err) => {
-            console.log(err);
-          });
     }
 
     getCardsArr() {
@@ -30,10 +27,7 @@ export default class Api {
                     return res.json()
                   }
                 return Promise.reject(res.status);
-            })  
-        .catch((err) => {
-            console.log(err);
-          });
+            })
     }
 
     editUserInfo(userInfo) {
@@ -51,9 +45,6 @@ export default class Api {
                   }
                 return Promise.reject(res.status);
             })
-        .catch((err) => {
-            console.log(err);
-          });
     }
 
     setUserAvatar(avatar) {
@@ -71,9 +62,6 @@ export default class Api {
                   }
                 return Promise.reject(res.status);
             })
-        .catch((err) => {
-            console.log(err);
-          });
     }
 
     addNewCard(card) {
@@ -91,9 +79,6 @@ export default class Api {
             }
             return Promise.reject(res.status);
         })
-        .catch((err) => {
-          console.log(err);
-        });
     }
 
     deleteCard(cardID) {
@@ -109,9 +94,6 @@ export default class Api {
           }
         return Promise.reject(res.status);
     })
-    .catch((err) => {
-        console.log(err);
-      });
     }
 
     likeCard(cardID, methodLike) {
@@ -127,8 +109,5 @@ export default class Api {
             }
           return Promise.reject(res.status);
         })
-        .catch((err) => {
-          console.log(err);
-        });
     }
 }

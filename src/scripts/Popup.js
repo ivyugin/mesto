@@ -6,12 +6,15 @@ export default class Popup{
     this._popupSelector = popupElements.popupSelector;
     this._closeBtnSelector = popupElements.closeBtnSelector;
     this._popup = document.querySelector(this._popupSelector);
-    this.setEventListeners();
+    this.escHandler = this._handleEscClose.bind(this);
+    this.missClcHandler = this._missClickClose.bind(this);
   }
 
   close() {
+    document.removeEventListener('keydown', this.escHandler);
     body.classList.remove('body_disable-scroll');
-    this._removePopupCloseEvent();
+    this._popup.classList.remove('popup_opened');
+    //this._removePopupCloseEvent();
   };
 
   _missClickClose(evt) {
@@ -24,16 +27,12 @@ export default class Popup{
   };
 
   _handleEscClose(evt) {
-      if (evt.key == 'Escape') {
+      if (evt.key === 'Escape') {
         this.close();
       }
   };
   setEventListeners() {
-    //esc
-    this.escHandler = this._handleEscClose.bind(this);
-    document.addEventListener('keydown', this.escHandler);
     //missclick
-    this.missClcHandler = this._missClickClose.bind(this);
     this._popup.addEventListener('click', this.missClcHandler);
     //Close button
     this._popup.querySelector(this._closeBtnSelector)
@@ -45,16 +44,17 @@ export default class Popup{
 
 
   _removePopupCloseEvent() {
-    document.removeEventListener('keydown', this.escHandler);
     this._popup.removeEventListener('click', this.missClcHandler);
     this._popup.removeEventListener('click', this._onBtnClose);
 
   };
 
   open() {
+    //esc
+    document.addEventListener('keydown', this.escHandler);
     //disable scroll
     body.classList.add('body_disable-scroll');
-
+    this._popup.classList.add('popup_opened');
     //this.setEventListeners();
   }
 
