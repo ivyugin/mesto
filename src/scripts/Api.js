@@ -10,10 +10,12 @@ export default class Api {
                 authorization: this._token
             }
             })
-            .then(res => res.json())
-            .then((result) => {
-                return result;
-        })
+            .then(res => {
+                if (res.ok) {
+                    return res.json()
+                  }
+                return Promise.reject(res.status);
+            })
     }
 
     getCardsArr() {

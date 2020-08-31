@@ -51,8 +51,7 @@ const avatarPopup = new PopupWithForm({
   },
   openPopup: () => {
     avatarPopup.setInputValues({subtitle: ''});
-    avatarPopup._saveBtn.classList.add('popup__container-save-btn_inactive');
-    avatarPopup._saveBtn.disabled = true;
+    avatarPopupValidator.disableButton();
   },
   submit: (inputValues) => {
     avatarPopup._saveBtn.textContent = 'Сохранение...';
@@ -104,6 +103,7 @@ const imgPopup = new PopupWithImage({
 
 // IMAGE CARD
 const imgCard = new Section ({
+  items: {},
   renderer: (item) => {
     const card = new Card({
       cardInfo: item, 
@@ -147,7 +147,8 @@ const promises = [userInfoPromise, getCardsPromise]
 
 Promise.all(promises)
   .then(prom => {
-    prom[1].forEach((item) => imgCard.rendererItem(item));
+    imgCard.items = prom[1];
+    imgCard.rendererItems();
   })
   .catch((err) => {
     console.log(err);
@@ -219,9 +220,12 @@ const addPopup = new PopupWithForm({
     })
   .then((result) => {
 
-    //Класс imgCard является универсальным для создания карточек
-    //в данном случае ему на отрисовку отдаётся 1 карточка, остальные карточки не перерисовываются.
-    //функция addItem вызывается внутри rendererItems после создания новой карточки.
+    //Класс imgCard является универсальным для создания карточек - Section
+    //rendererItems - отрисовывает карточки с сервера переданные в конструкторе
+    //функции addItem на вход нужно передать новую карточку - что бы она добавила её на страницу.
+    //код создания новой карточки и передачи её в addItem уже есть в классе imgCard.renderer
+    //что бы не дублировать этот код - добавил дополнительно функцию rendererItem - 
+    //которая выполняет imgCard.renderer для одной карточки переданной через параметр.
 
     imgCard.rendererItem(result);
     addPopup.close();
